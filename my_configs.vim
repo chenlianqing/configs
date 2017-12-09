@@ -45,6 +45,7 @@ filetype plugin indent on    " required
 
 Bundle 'Valloric/YouCompleteMe' 
 
+
 "-----------------------------------------------------------------
 " 以下为个人设置
 "-----------------------------------------------------------------
@@ -121,3 +122,20 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " snippets expand key
 imap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
 smap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
+
+
+"-----------------------------------------------------------------
+" 新建python文件自动添加头文件
+"-----------------------------------------------------------------
+fun MyHeaderPython()
+    call setline(1, "#! /Users/chenlianqing/anaconda/bin/python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    call append(2, "# chen @ " . strftime('%Y-%m-%d %T', localtime()))
+    normal G
+    normal o
+    normal o
+endfun    
+
+autocmd BufNewFile *.py ks|call MyHeaderPython()|'s
+
+
